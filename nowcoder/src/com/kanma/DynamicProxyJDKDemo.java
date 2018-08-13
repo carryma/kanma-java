@@ -30,42 +30,57 @@ class Cat implements Animal {
 
 //通用动态代理类，被调用对象方法前后增加特殊操作,一样的类都可用此类代理
 class AnimalProxy implements InvocationHandler {
-    // 被代理的对象(委托类
-    // )
+    // 被代理的对象(委托类)
     private Object target;
 
-    /**
-     * 绑定委托对象并返回一个代理类
-     *
-     * @param target
-     * @return Object
-     */
-    Object getInstance(Object target) {
+    public AnimalProxy(Object target) {
+        super();
         this.target = target;
-        // 取得代理对象
-        return Proxy.newProxyInstance(target.getClass().getClassLoader(),
-                target.getClass().getInterfaces(), this);
     }
 
+
+    /**
+     * 在代理实例上处理方法调用并返回结果
+     *
+     * @param proxy  代理类
+     * @param method 被代理的方法
+     * @param args   该方法的参数数组
+     */
+    //要增强的方法写在invoke函数里
     @Override
     public Object invoke(Object proxy, Method method, Object[] args)
             throws Throwable {
+
         Object result = null;
-        System.out.println("方法调用前操作..");
-        // 执行被调用方法主体
+        //调用之前
+        doBefore();
+        //调用原始对象的方法
         result = method.invoke(target, args);
-        System.out.println("方法调用后操作..");
+        //调用之后
+        doAfter();
         return result;
+    }
+
+    private void doBefore() {
+        System.out.println("before method invoke");
+    }
+
+    private void doAfter() {
+        System.out.println("after method invoke");
     }
 
 }
 
 public class DynamicProxyJDKDemo {
     public static void main(String[] args) {
-        AnimalProxy proxy = new AnimalProxy();
-        Animal dogProxy = (Animal) proxy.getInstance(new Dog());
-        Animal catProxy = (Animal) proxy.getInstance(new Cat());
-        dogProxy.makeSound("Tom");
-        dogProxy.makeSound("XiaoTianXin");
+        Animal dog = new Dog();
+        AnimalProxy handler = new AnimalProxy(new Dog());
+        //创建动态代理对象
+        Animal proxy = (Animal) Proxy.newProxyInstance(
+                dog.getClass().getClassLoader(),
+                dog.getClass().getInterfaces(),
+                handler);
+        proxy.makeSound("Doggy");
+        //catProxy.makeSound("Catty");
     }
 }

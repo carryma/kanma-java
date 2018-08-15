@@ -1,4 +1,4 @@
-package com.kanma;
+package com.kanma.proxy;
 
 /**
  * @ Desc   ：JDK动态代理,通用动态代理类，被调用对象方法前后增加特殊操作,一样的类都可用此类代理
@@ -74,13 +74,20 @@ class AnimalProxy implements InvocationHandler {
 public class DynamicProxyJDKDemo {
     public static void main(String[] args) {
         Animal dog = new Dog();
-        AnimalProxy handler = new AnimalProxy(new Dog());
+        Animal cat = new Cat();
+        AnimalProxy dogHandler = new AnimalProxy(dog);
+        AnimalProxy CatHandler = new AnimalProxy(cat);
         //创建动态代理对象
-        Animal proxy = (Animal) Proxy.newProxyInstance(
+        Animal dogProxy = (Animal) Proxy.newProxyInstance(
                 dog.getClass().getClassLoader(),
                 dog.getClass().getInterfaces(),
-                handler);
-        proxy.makeSound("Doggy");
-        //catProxy.makeSound("Catty");
+                dogHandler);
+
+        Animal catProxy = (Animal) Proxy.newProxyInstance(
+                cat.getClass().getClassLoader(),
+                cat.getClass().getInterfaces(),
+                CatHandler);
+        dogProxy.makeSound("Doggy");
+        catProxy.makeSound("Catty");
     }
 }

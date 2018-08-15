@@ -1,4 +1,4 @@
-package com.kanma;
+package com.kanma.coding;
 
 import java.util.Scanner;
 

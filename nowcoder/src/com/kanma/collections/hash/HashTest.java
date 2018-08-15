@@ -7,8 +7,11 @@ package com.kanma.collections.hash;
  */
 public class HashTest {
     public static void main(String[] args) {
-        String str = "I am ok";
-        System.out.println(str.hashCode());
+        String str = "Aa";
+        String str1 = "BB";
+        System.out.println(str+" 的哈希码是:" + str.hashCode());
+        System.out.println(str1+" 的哈希码是:" + str1.hashCode());
+
     }
 
 }

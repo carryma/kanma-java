@@ -1,13 +1,11 @@
 package com.kanma.classloader;
 
-import static java.lang.Class.forName;
-
 /**
  * @ Desc   ：测试启动类加载器, 扩展类加载器, 系统类加载器
  * @ Author ：MaKang
  * @ Date   ：Created in 2018/8/15 10:53
  */
-public class ClassLoadeTest {
+public class ClassLoaderTest {
     public static void main(String[] args) {
         try {
             //熟悉一下System类

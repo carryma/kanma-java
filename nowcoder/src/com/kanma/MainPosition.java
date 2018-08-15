@@ -13,9 +13,9 @@ public class MainPosition {
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()) {
             int x = 0, y = 0;
-            String inputStr = new String(sc.nextLine());
+            String inputStr = sc.nextLine();
             //以";"为分割标志,将字符串分成字符串数组
-            String[] steps = inputStr.split("\\;");
+            String[] steps = inputStr.split(";");
             for (String s : steps) {
                 if (s.length() == 3) {
                     if (s.charAt(1) >= '0' && s.charAt(1) <= '9' && s.charAt(2) >= '0' && s.charAt(2) <= '9') {

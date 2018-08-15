@@ -46,7 +46,7 @@ class AnimalProxy implements InvocationHandler {
      * @param method 被代理的方法
      * @param args   该方法的参数数组
      */
-    //要增强的方法写在invoke函数里
+    //要增强的方法写在invoke方法里
     @Override
     public Object invoke(Object proxy, Method method, Object[] args)
             throws Throwable {

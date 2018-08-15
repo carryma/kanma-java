@@ -36,6 +36,7 @@ class AnimalProxy2 implements InvocationHandler {
 
 public class DynamicProxyJDKDemo2 {
     public static void main(String[] args) {
+        //两个代理对象
         AnimalProxy2 proxy1 = new AnimalProxy2();
         AnimalProxy2 proxy2 = new AnimalProxy2();
         Animal dogProxy = (Animal) proxy1.getInstance(new Dog());

@@ -1,4 +1,4 @@
-package com.kanma;
+package com.kanma.concurrency;
 
 /**
  * @ Desc   ：并发和单线程执行测试
@@ -10,7 +10,7 @@ public class ConcurrencyTest {
     /**
      * 执行次数
      */
-    private static final long count = 10000l;
+    private static final long count = 10000L;
 
     public static void main(String[] args) throws InterruptedException {
         //并发计算
@@ -21,15 +21,12 @@ public class ConcurrencyTest {
 
     private static void concurrency() throws InterruptedException {
         long start = System.currentTimeMillis();
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                int a = 0;
-                for (long i = 0; i < count; i++) {
-                    a += 5;
-                }
-                System.out.println(a);
+        Thread thread = new Thread(() -> {
+            int a = 0;
+            for (long i = 0; i < count; i++) {
+                a += 5;
             }
+            System.out.println(a);
         });
         thread.start();
         int b = 0;

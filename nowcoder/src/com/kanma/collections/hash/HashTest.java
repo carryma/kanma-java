@@ -10,16 +10,17 @@ import java.util.Map;
  */
 public class HashTest {
     public static void main(String[] args) {
-        Map<String,String> map = new HashMap<>();
-        map.put("Aa","I am Aa");
-        map.put("BB","I am BB");
-        System.out.println(map.get("Aa"));
-        System.out.println(map.get("BB"));
-//        String str = "Aa";
-//        String str1 = "BB";
-//        System.out.println(str+" 的哈希码是:" + str.hashCode());
-//        System.out.println(str1+" 的哈希码是:" + str1.hashCode());
+        //字符串"Aa"和"BB"的哈希码是相同的
+        String str = "Aa";
+        String str1 = "BB";
+        System.out.println(str + " 的哈希码是:" + str.hashCode());
+        System.out.println(str1 + " 的哈希码是:" + str1.hashCode());
 
+        //HashMap如何解决哈冲突的? ===>链表法
+        Map<String, String> map = new HashMap<>();
+        map.put("Aa", "I am Aa");
+        map.put("BB", "I am BB");
+        System.out.println("Key:" + str + "  Value:"+map.get("Aa"));
+        System.out.println("Key:" + str1 +"  Value:"+ map.get("BB"));
     }
-
 }

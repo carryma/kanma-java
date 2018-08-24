@@ -11,6 +11,7 @@ public class DCLSingleton {
     }
 
     //2.当前类永远持有同一个对象的引用
+    // volatile 禁止指令重排
     private static volatile DCLSingleton instance;
 
     //3.通过当前类提供的静态方法发布出去

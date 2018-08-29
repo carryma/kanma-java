@@ -1,6 +1,8 @@
 package com.kanma.io;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @ Desc   ：FileInputStream, FileOutputStream学习
@@ -8,7 +10,8 @@ import java.io.*;
  * @ Date   ：Created in 2018/8/29 22:21
  */
 public class FileInputStreamCase {
-    public static void readTxtFile(String filePath) throws IOException{
+
+    private static String readTxtFile(String filePath) throws IOException {
         /*
         * 1. 首先获得一个文件句柄。File file = new File(); file即为文件句柄。
         *    两人之间连通电话网络了。接下来可以开始打电话了。
@@ -25,15 +28,41 @@ public class FileInputStreamCase {
         FileInputStream fis = new FileInputStream(file);
         InputStreamReader isr = new InputStreamReader(fis);
         BufferedReader bReader = new BufferedReader(isr);
-        String strInTxt = null;
-        while((strInTxt = bReader.readLine()) != null) {
-            System.out.println(strInTxt);
+        String line = null;
+        //StringBuffer是线程安全的,StringBuil是线程不安全的,但是在单线程环境下效率高
+        StringBuilder sb = new StringBuilder();
+        while ((line = bReader.readLine()) != null) {
+            //System.out.println(strInTxt);
+            //sb.append(line + "\n");
+            sb.append(line);
         }
+        return sb.toString();
     }
+
+    private static void outputWordAndCounts(String text) {
+//        String[] words = text.split("[a-zA-Z]+");
+        String temp = text.replaceAll("\\pP", " ");
+        String[] words = temp.trim().split(" +");
+        Map<String, Integer> map = new HashMap<>();
+        for (String s : words) {
+            if (map.containsKey(s)) {
+                map.put(s, map.get(s) + 1);
+            } else {
+                map.put(s, 1);
+            }
+        }
+        for (String key : map.keySet()) {
+            if (key != null) {
+                System.out.println(key + " " + map.get(key));
+            }
+        }
+        // System.out.println(map.keySet() + ":" + map.values());
+    }
+
     public static void main(String[] args) throws IOException {
-        //String filePath = "C:\\Users\\kanma\\Desktop\\a.txt";
-        String filePath = "D:\\Projects\\IdeaProjects\\kanma-java\\nowcoder\\a.txt";
-        //String filePath = "a.txt";
-        readTxtFile(filePath);
+        String filePath = "D:\\Projects\\IdeaProjects\\kanma-java\\b.txt";
+        String outStrings = readTxtFile(filePath);
+        System.out.println(outStrings);
+        outputWordAndCounts(outStrings);
     }
 }

@@ -41,7 +41,9 @@ public class FileInputStreamCase {
 
     private static void outputWordAndCounts(String text) {
 //        String[] words = text.split("[a-zA-Z]+");
+        //把字符串中所有标点(, .)替换成空格字符
         String temp = text.replaceAll("\\pP", " ");
+        //按照单个或者连续多个空格把字符串分割成纯单词数组
         String[] words = temp.trim().split(" +");
         Map<String, Integer> map = new HashMap<>();
         for (String s : words) {

@@ -20,6 +20,8 @@ public class HashTest {
         Map<String, String> map = new HashMap<>();
         map.put("Aa", "I am Aa");
         map.put("BB", "I am Aa");
+        map.put("BB", "I am BB");
+
         map.put(null, "I am null");
         map.put(null, "I am null tow");
         int size = map.size();

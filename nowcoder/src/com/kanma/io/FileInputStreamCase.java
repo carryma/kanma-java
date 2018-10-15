@@ -62,7 +62,7 @@ public class FileInputStreamCase {
     }
 
     public static void main(String[] args) throws IOException {
-        String filePath = "D:\\Projects\\IdeaProjects\\kanma-java\\b.txt";
+        String filePath = "D:\\Projects\\kanma-java\\b.txt";
         String outStrings = readTxtFile(filePath);
         System.out.println(outStrings);
         outputWordAndCounts(outStrings);
